@@ -1,0 +1,66 @@
+---
+title: "Final Project"
+author: "Jiafeng Ye"
+date: "11/30/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+
+my_lm = function(response, predictors, alpha) {
+  
+  # Make sure data formats are appropriate
+  response <- as.vector(response)
+  predictors <- as.matrix(predictors)
+  
+  # Define parameters
+  n <- length(response)
+  p <- dim(predictors)[2]
+  df <- n - p
+  
+  # Define the initial beta
+  beta0<-c()
+  
+  # define the standard quadratic loss function
+  sqfn<-function(response, predictors, par){  
+  loss <- sum((predictors%*%par- response)^2)/
+return(loss) 
+}
+beta.hat<-optim(par = beta0, fn = sqfn, X = predictors, y = response, method = "BFGS")$par
+  
+# Estimate of the residual variance (sigma2) from Eq. (6.3)
+  # Compute residuals
+  resid <- response - predictors%*%as.matrix(beta.hat) 
+  sigma2.hat <- (1/df)*t(resid)%*%resid
+  
+  # Estimate of the variance of the estimated beta from Eq. (6.2)
+  var.beta <- sigma2.hat*solve(t(predictors)%*%predictors)
+  
+  # Estimate of the confidence interval based on alpha
+  quant <- 1 - alpha/2
+  ci.beta <- c(beta.hat - qnorm(p = quant)*sqrt(var.beta), beta.hat + 
+                 qnorm(p = quant)*sqrt(var.beta))
+  
+  # Return all estimated values
+  return(list(beta = beta.hat, sigma2 = sigma2.hat, 
+              variance_beta = var.beta, ci = ci.beta))
+}
+```
+
+```{r}
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
