@@ -53,14 +53,9 @@ beta.hat<-optim(par = beta0, fn = sqfn, X = predictors, y = response, method = "
 }
 ```
 
-```{r}
-```
 
-```{r}
 
-```
 
-```{r}
 
-```
+
 
