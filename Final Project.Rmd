@@ -1,8 +1,25 @@
 ---
-title: "Final Project"
-author: "Jiafeng Ye"
-date: "11/30/2021"
-output: html_document
+title: "Final Project Group 8"
+author:
+- affiliation: Department of Industrial and Systems Engineering, Auburn University
+  name: 'Amir Mehdizadeh ^[Email: azm0127@auburn.edu </a>]'
+- affiliation: Department of Industrial and Systems Engineering, Auburn University
+  name: 'Jiafeng Ye ^[Email: jzy0087@auburn.edu </a>]'
+- affiliation: Department of Psychological Sciences, Auburn University
+  name: 'David Haste ^[Email: dah0048@auburn.edu </a>]'
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    code_folding: show
+    number_sections: no
+    paged_df: yes
+    theme: simplex
+    toc: yes
+    toc_float: yes
+  includes:
+    in_header: structure.tex
+  pdf_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
