@@ -30,17 +30,38 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 
+# add a column with ones to the feature matrix
+shapeX = function(X) {
+        X = as.matrix(X)
+        X = cbind(1, X)
+        X
+}
+
+shapeY = function(Y) {
+        Y = as.matrix(Y)
+        Y
+}
+
+# least squares estimators that minimizer
+L  = function(Y, X, beta){  
+        loss = sum(t(Y - X%*%beta)%*%(Y - X%*%beta))
+        loss 
+}
+
  # define the standard quadratic loss function
   sqfn<-function(y, x, beta){  
   loss <- sum((x%*%as.vector(beta)- y)^2)
 return(loss) 
   }
 
+
+
 my_lm = function(response, predictors, alpha) {
   
   # Make sure data formats are appropriate
-  response <- as.vector(response)
-  predictors <- as.matrix(predictors)
+  response <- shapeY(response)
+  predictors <- shapeX(predictors)
+  
   
   # Define parameters
   n <- length(response)
@@ -48,15 +69,15 @@ my_lm = function(response, predictors, alpha) {
   df <- n - p
   
   # Define the initial beta
-  beta0 = matrix(0, nrow  = 1, ncol = p)
-  beta0[1,1] = mean(response)
+  beta0 = matrix(0, nrow  = p, ncol = 1)
+  beta0[1,1] = mean(response[,1])
   for (i in 2:p) {
-    beta0[1,i] = cov(response, predictors[,i]) / var(predictors[,i])
+        beta0[i,1] = cov(response[,1], predictors[,i]) / var(predictors[,i])
   }
     
-sqfn(response,predictors,beta0)
-  
-beta.hat<-optim(beta0, function(z)sqfn(response,predictors,z))$par
+#sqfn(response,predictors,beta0)
+  fit = ptim(par = beta0, fn = L, predictors = predictors, response = response)
+  beta.hat = fit$par
   
 # Estimate of the residual variance (sigma2) from Eq. (6.3)
   # Compute residuals
