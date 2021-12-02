@@ -16,6 +16,14 @@ shapeY = function(Y) {
         Y
 }
 
+# Define parameters
+
+Y = shapeY(Y)
+X = shapeX(X)
+n <- length(Y)
+p <- dim(X)[2]
+
+
 
 beta0 = matrix(0, nrow  = p, ncol = 1)
 beta0[1,1] = mean(Y[,1])
