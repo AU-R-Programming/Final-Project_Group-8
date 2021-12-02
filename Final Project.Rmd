@@ -27,6 +27,31 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## R Markdown
+```{r}
+
+```
+
+beta - The estimation of the coefficients
+
+sigma2 - The estimation of the error
+
+variance_beta - The variance of estimated beta based on the input significance level
+
+ci - The confidence interval of the estimated beta based on the input significance level
+
+R-squared - The coefficient of determination (indicating the goodness of fit)
+
+Cp - The Mallows' Cp
+
+F-statistics - The F-test statistic
+
+P-value - p-value of F-test statistic
+
+RMSE - The root of mean squared error
+
+MAE - The mean absolute error
+
+MAPE - The mean absolute percentage error
 
 ```{r}
 library(ggplot2)
@@ -132,7 +157,7 @@ my_lm = function(response, predictors, alpha) {
   
   # Return all estimated values
 return(list(beta = beta.hat, sigma2 = sigma2.hat, 
-    variance_beta = var.beta, ci = ci.beta,R-squared = R_squared, Cp = Cp, F-statistics = F_statistics, P-Value = P_value, RMSE = RMSE, MAE = MAE, MAPE = MAPE))
+    variance_beta = var.beta, ci = ci.beta,R-squared = R_squared, Cp = Cp, F_statistics = F_statistics, P-Value = P_value, RMSE = RMSE, MAE = MAE, MAPE = MAPE))
 }
 ```
 
