@@ -29,6 +29,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## R Markdown
 
 ```{r}
+library(ggplot2)
 
 # add a column with ones to the feature matrix
 shapeX = function(X) {
@@ -95,9 +96,43 @@ my_lm = function(response, predictors, alpha) {
   quant <- 1 - alpha/2
   ci.beta <- c(beta.hat - qnorm(p = quant)*sqrt(var.beta), beta.hat + qnorm(p = quant)*sqrt(var.beta))
   
+  
+  # Get the prediction values of the responses
+  ypred<-predictors%*%as.vector(beta.hat) 
+  
+  # Calculate the R_squared values through SSE and SST
+  SSM<-sum((ypred-mean(response))^2)
+  SSE<-sum((response-ypred)^2)
+  SST<-sum((response-mean(response))^2)
+  R_squared<-1-(SSE/SST)
+  
+  # Calculate the Cp value
+  Cp<-SSE+2*P*as.numeric(sigma2.hat)
+  
+  # Calculate the F_statistics and P-value
+  DFM<-p-1
+  DFE<-n-p
+  F_statistics<-(SSM/DFM)/(SSE/DFE)
+  P_value<-pf(F_statistics,DFM,DFE)
+  
+  #Adding other measurements for the model accuracy
+  RMSE<-sqrt(sum(response-ypred)^2/n)
+  MAE<-sum(abs(response-ypred))/n
+  MAPE<-sum(abs((response-ypred)/response))/n
+  
+  #Plotting the Residual vs. fitted plots
+  r_vs_f<-ggplot() + geom_point(aes(x=resid, y= ypred))
+
+  #Plotting the q-q plots
+  qqnorm(resids)
+
+  #Plotting Histogram
+  plot(density(resids))
+  
+  
   # Return all estimated values
-  return(list(beta = beta.hat, sigma2 = sigma2.hat, 
-              variance_beta = var.beta, ci = ci.beta))
+return(list(beta = beta.hat, sigma2 = sigma2.hat, 
+    variance_beta = var.beta, ci = ci.beta,R-squared = R_squared, Cp = Cp, F-statistics = F_statistics, P-Value = P_value, RMSE = RMSE, MAE = MAE, MAPE = MAPE))
 }
 ```
 
