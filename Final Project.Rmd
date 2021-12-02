@@ -82,7 +82,7 @@ my_lm = function(response, predictors, alpha) {
 # Estimate of the residual variance (sigma2) from Eq. (6.3)
   # Compute residuals
   resids <- response - predictors%*%as.vector(beta.hat) 
-  sigma2.hat <- (1/df)*(t(resid)%*%resid)
+  sigma2.hat <- (1/df)*(t(resids)%*%resids)
   
   # Estimate of the variance of the estimated beta from Eq. (6.2)
   var.beta <- as.vector(sigma2.hat)*solve(t(predictors)%*%predictors)
