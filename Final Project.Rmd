@@ -30,13 +30,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 
-
-compCost <- function(predictors, response, par){  
-  m <- length(response)
-  J <- sum((predictors%*%par- response)^2)/(2*m)
-return(J) 
-}
-
+ # define the standard quadratic loss function
+  sqfn<-function(y, x, beta){  
+  loss <- sum((x%*%as.vector(beta)- y)^2)
+return(loss) 
+  }
 
 my_lm = function(response, predictors, alpha) {
   
@@ -53,29 +51,24 @@ my_lm = function(response, predictors, alpha) {
   beta0 = matrix(0, nrow  = 1, ncol = p)
   beta0[1,1] = mean(response)
   for (i in 2:p) {
-    beta0[1,i] = cov(response, predictors[i]) / var(predictors[i])
+    beta0[1,i] = cov(response, predictors[,i]) / var(predictors[,i])
   }
+    
+sqfn(response,predictors,beta0)
   
-  # define the standard quadratic loss function
-  sqfn<-function(response, predictors, par){  
-  loss <- sum((predictors%*%par- response)^2)
-return(loss) 
-  }
-  
-beta.hat<-optim(par = beta0, fn = sqfn, X = predictors, y = response, method = "BFGS")$par
+beta.hat<-optim(beta0, function(z)sqfn(response,predictors,z))$par
   
 # Estimate of the residual variance (sigma2) from Eq. (6.3)
   # Compute residuals
-  resid <- response - predictors%*%as.matrix(beta.hat) 
-  sigma2.hat <- (1/df)*t(resid)%*%resid
+  resid <- response - predictors%*%as.vector(beta.hat) 
+  sigma2.hat <- (1/df)*(t(resid)%*%resid)
   
   # Estimate of the variance of the estimated beta from Eq. (6.2)
-  var.beta <- sigma2.hat*solve(t(predictors)%*%predictors)
+  var.beta <- as.vector(sigma2.hat)*solve(t(predictors)%*%predictors)
   
   # Estimate of the confidence interval based on alpha
   quant <- 1 - alpha/2
-  ci.beta <- c(beta.hat - qnorm(p = quant)*sqrt(var.beta), beta.hat + 
-                 qnorm(p = quant)*sqrt(var.beta))
+  ci.beta <- c(beta.hat - qnorm(p = quant)*sqrt(var.beta), beta.hat + qnorm(p = quant)*sqrt(var.beta))
   
   # Return all estimated values
   return(list(beta = beta.hat, sigma2 = sigma2.hat, 
@@ -83,6 +76,9 @@ beta.hat<-optim(par = beta0, fn = sqfn, X = predictors, y = response, method = "
 }
 ```
 
+```{r}
+my_lm(y,x,0.05)
+```
 
 
 
