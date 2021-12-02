@@ -76,12 +76,12 @@ my_lm = function(response, predictors, alpha) {
   }
     
 #sqfn(response,predictors,beta0)
-  fit = ptim(par = beta0, fn = L, predictors = predictors, response = response)
+  fit = optim(par = beta0, fn = L, predictors = predictors, response = response)
   beta.hat = fit$par
   
 # Estimate of the residual variance (sigma2) from Eq. (6.3)
   # Compute residuals
-  resid <- response - predictors%*%as.vector(beta.hat) 
+  resids <- response - predictors%*%as.vector(beta.hat) 
   sigma2.hat <- (1/df)*(t(resid)%*%resid)
   
   # Estimate of the variance of the estimated beta from Eq. (6.2)
@@ -101,8 +101,15 @@ my_lm = function(response, predictors, alpha) {
 my_lm(y,x,0.05)
 ```
 
+##Graphing Plots
+```{r}
+#Plotting the reisdual vs. fitted plots
+plot(fitted(fit), resids)
 
+#Plotting the q-q plots
+qqnorm(resids)
 
-
-
+#Plotting Histogram
+plot(density(resids))
+```
 
