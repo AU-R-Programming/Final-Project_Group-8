@@ -44,3 +44,6 @@ my_lm(Y, X, 0.05)
 ```
 
 
+Sources:
+https://smac-group.github.io/ds/section-r-packages.html#section-basic-steps
+http://rstudio-pubs-static.s3.amazonaws.com/159730_dc1df2f4cc0447fb866a0de3aeaa9117.html
