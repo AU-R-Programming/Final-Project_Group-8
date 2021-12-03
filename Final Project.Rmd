@@ -137,7 +137,7 @@ my_lm = function(response, predictors, alpha) {
   MAPE<-sum(abs((response-ypred)/response))/n
   
   #Plotting the Residual vs. fitted plots
-  r_vs_f<-ggplot() + geom_point(aes(x=resid, y= ypred))
+  r_vs_f<-plot(resids,ypred)
 
   #Plotting the q-q plots
   qqnorm(resids)
@@ -153,7 +153,13 @@ return(list(beta = beta.hat, sigma2 = sigma2.hat,
 ```
 
 ```{r}
-my_lm(Y,X,0.05)
+library(tidyverse)
+
+df = read_csv("forestfires.csv")
+
+X = df[,-1]
+Y = df[,1]
+my_lm(Y,X,0.05)    
 ```
 
 ##Graphing Plots
