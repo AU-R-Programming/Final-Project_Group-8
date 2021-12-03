@@ -15,6 +15,12 @@
 #' @param ci The confidence interval of the estimated beta based on the input significance
 #' leve
 #' @param R-squared The coefficient of determination (including goodness of fit)
+#' @param Cp The Mallow's Cp
+#' @param F-statistics The F-test Statistics
+#' @param P-value p-value of F-test statistic
+#' @param RMSE The root of mean squared error
+#' @param MAE The mean absolute error
+#' @param MAPE The mean absolute percentage error
 #' @importFrom tidyverse ggplot2
 #' @export my_lm 
 library(ggplot2)

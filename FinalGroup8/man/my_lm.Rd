@@ -24,6 +24,18 @@ level}
 leve}
 
 \item{R-squared}{The coefficient of determination (including goodness of fit)}
+
+\item{Cp}{The Mallow's Cp}
+
+\item{F-statistics}{The F-test Statistics}
+
+\item{P-value}{p-value of F-test statistic}
+
+\item{RMSE}{The root of mean squared error}
+
+\item{MAE}{The mean absolute error}
+
+\item{MAPE}{The mean absolute percentage error}
 }
 \description{
 Contains a linear regression function that also evaluates parameters such as beta hat, confidence 
