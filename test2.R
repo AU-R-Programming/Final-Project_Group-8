@@ -1,9 +1,9 @@
 library(tidyverse)
 
-df = read_csv("crop.data.csv")
+dff = read_csv("crop.data.csv")
 
-X = df[,-4]
-Y = df[,4]
+X = dff[,-4]
+Y = dff[,4]
 # add a column with ones to the feature matrix
 shapeX = function(X) {
     X = as.matrix(X)
@@ -36,18 +36,23 @@ L  = function(Y, X, beta){
     loss 
 }
 
-fit = optim(par = beta0, fn = L, X = X, Y = Y)
-beta.hat = fit$par
+fit = optim(par = as.vector(beta0), fn = L, X = X, Y = Y)
+beta.hat = as.matrix(fit$par)
 
-resid <- Y - X%*%beta.hat
-sigma2.hat <- (1/(n -p))*t(resid)%*%resid
+resid = Y - X%*%beta.hat
+sigma2.hat = (1/(n - p))*t(resid)%*%resid
+
 
 # Estimate of the variance of the estimated beta from Eq. (6.2)
-var.beta <- as.vector(sigma2.hat)*solve(t(X)%*%X)
+var.beta_mat <- as.vector(sigma2.hat)*solve(t(X)%*%X)
+var.beta = diag(var.beta_mat)
+
 
 # Estimate of the confidence interval based on alpha
 alpha = 0.5
 quant <- 1 - alpha/2
-ci.beta <- c(beta.hat - qnorm(p = quant)*sqrt(var.beta), beta.hat + qnorm(p = quant)*sqrt(var.beta))
+ci.beta <- c(beta.hat - qnorm(p = quant)*sqrt(var.beta), beta.hat + 
+                qnorm(p = quant)*sqrt(var.beta))
+
 
 
