@@ -31,9 +31,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r cars}
 library(FinalGroup8)
-read.csv("forestfires.csv")
+df = read.csv("forestfires.csv")
 
-my_lm(forestfires$FFMC, forestfires$DMC, .05)
+X = df[,-1]
+Y = df[,1]
+
+my_lm(Y, X, 0.05)
 ```
 
 
