@@ -14,7 +14,7 @@
 #' level
 #' @param ci The confidence interval of the estimated beta based on the input significance
 #' leve
-#' @param R-squared The coefficient of determination (including goodness of fit)
+#' @param R-squared The coefficient of determination (indicating goodness of fit)
 #' @importFrom tidyverse ggplot2
 #' @export my_lm 
 library(ggplot2)
