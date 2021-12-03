@@ -4,7 +4,7 @@
 #' intervals, and plots
 #' @param response Also known as beta, an estimation of the coefficients in the model
 #' @param predictors Also known as sigma2, an estimation of the error  
-#' @import tidyverse
+#' @importFrom tidyverse ggplot2
 #' @export
 library(ggplot2)
 
