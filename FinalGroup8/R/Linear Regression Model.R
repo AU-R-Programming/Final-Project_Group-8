@@ -21,6 +21,7 @@
 #' @param RMSE The root of mean squared error
 #' @param MAE The mean absolute error
 #' @param MAPE The mean absolute percentage error
+#' @param R-squared The coefficient of determination (indicating goodness of fit)
 #' @importFrom tidyverse ggplot2
 #' @export my_lm 
 library(ggplot2)

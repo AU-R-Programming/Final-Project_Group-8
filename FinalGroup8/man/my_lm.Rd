@@ -23,8 +23,6 @@ level}
 \item{ci}{The confidence interval of the estimated beta based on the input significance
 leve}
 
-\item{R-squared}{The coefficient of determination (including goodness of fit)}
-
 \item{Cp}{The Mallow's Cp}
 
 \item{F-statistics}{The F-test Statistics}
@@ -36,6 +34,8 @@ leve}
 \item{MAE}{The mean absolute error}
 
 \item{MAPE}{The mean absolute percentage error}
+
+\item{R-squared}{The coefficient of determination (indicating goodness of fit)}
 }
 \description{
 Contains a linear regression function that also evaluates parameters such as beta hat, confidence 
