@@ -1,8 +1,25 @@
 ---
-title: "README"
-author: "David Haste"
-date: "12/3/2021"
-output: html_document
+title: "Final Project Group 8"
+author:
+- affiliation: Department of Industrial and Systems Engineering, Auburn University
+  name: 'Amir Mehdizadeh ^[Email: azm0127@auburn.edu </a>]'
+- affiliation: Department of Industrial and Systems Engineering, Auburn University
+  name: 'Jiafeng Ye ^[Email: jzy0087@auburn.edu </a>]'
+- affiliation: Department of Psychological Sciences, Auburn University
+  name: 'David Haste ^[Email: dah0048@auburn.edu </a>]'
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    code_folding: show
+    number_sections: no
+    paged_df: yes
+    theme: simplex
+    toc: yes
+    toc_float: yes
+  includes:
+    in_header: structure.tex
+  pdf_document:
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -11,13 +28,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## FinalGroup8
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
 library(FinalGroup8)
-read_csv("forestfires.csv")
+read.csv("forestfires.csv")
 
 my_lm(forestfires$FFMC, forestfires$DMC, .05)
 ```
