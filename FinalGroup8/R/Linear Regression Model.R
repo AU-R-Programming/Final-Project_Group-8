@@ -4,8 +4,17 @@
 #' @description Contains a linear regression function that also evaluates parameters such as beta hat, confidence 
 #' intervals, and plots
 #' @name my_lm
-#' @param response Also known as beta, an estimation of the coefficients in the model
-#' @param predictors Also known as sigma2, an estimation of the error  
+#' @usage my_lm(response, predictors, alpha)
+#' @param response A vector in n*1 dimension denoting the true observed values
+#' @param predictors A matrix in n*p dimension denoting the input values  
+#' @param alpha The significance level
+#' @param beta The estimation of the coefficients
+#' @param sigma2 The estimation of the error
+#' @param variance_beta The variance of estimated beta based on the input significance
+#' level
+#' @param ci The confidence interval of the estimated beta based on the input significance
+#' leve
+#' @param R-squared The coefficient of determination (including goodness of fit)
 #' @importFrom tidyverse ggplot2
 #' @export my_lm 
 library(ggplot2)

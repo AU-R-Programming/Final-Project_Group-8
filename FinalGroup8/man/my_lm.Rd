@@ -3,10 +3,27 @@
 \name{my_lm}
 \alias{my_lm}
 \title{"Linear Regression Model"}
+\usage{
+my_lm(response, predictors, alpha)
+}
 \arguments{
-\item{response}{Also known as beta, an estimation of the coefficients in the model}
+\item{response}{A vector in n*1 dimension denoting the true observed values}
 
-\item{predictors}{Also known as sigma2, an estimation of the error}
+\item{predictors}{A matrix in n*p dimension denoting the input values}
+
+\item{alpha}{The significance level}
+
+\item{beta}{The estimation of the coefficients}
+
+\item{sigma2}{The estimation of the error}
+
+\item{variance_beta}{The variance of estimated beta based on the input significance
+level}
+
+\item{ci}{The confidence interval of the estimated beta based on the input significance
+leve}
+
+\item{R-squared}{The coefficient of determination (including goodness of fit)}
 }
 \description{
 Contains a linear regression function that also evaluates parameters such as beta hat, confidence 
