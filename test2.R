@@ -55,4 +55,7 @@ ci.beta <- c(beta.hat - qnorm(p = quant)*sqrt(var.beta), beta.hat +
                 qnorm(p = quant)*sqrt(var.beta))
 
 
+my_lm(crop_data$density, crop_data$yield, .05)
+
+
 

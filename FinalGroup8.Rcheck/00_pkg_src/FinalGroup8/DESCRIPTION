@@ -1,0 +1,17 @@
+Package: FinalGroup8
+Type: Package
+Title: Linear Regression Package
+Version: 0.1.0
+Authosr@R: c( person("Amir", "Mehdizadeh", role = "aut")
+        person("Jianfeng", "Ye", role = "aut") person("David", "Haste",
+        role = "aut"))
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: This is a package designed to implement linear regression. It includes
+    the linear regression model, the paramaters needed to run this model, confidence
+    intervals, F-statistics and p-values, as well as plots for the model.
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+NeedsCompilation: no
+Packaged: 2021-12-03 19:12:47 UTC; dah0048
