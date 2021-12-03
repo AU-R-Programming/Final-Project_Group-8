@@ -27,7 +27,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ## FinalGroup8
+This package can be downloaded through the use of the command
+devtools::install_github(AU-R-Programming/Final-Project_Group-8/FinalGroup8)
 
+
+Below is an example of using the my_lm function with an existing dataset. It provides information such as confidence intervals, beta, F-statistics, p-value, as well as graphs plotting the residuals, q-q plots, and histogram of residuals. 
 
 ```{r cars}
 library(FinalGroup8)
