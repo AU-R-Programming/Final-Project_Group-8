@@ -105,4 +105,7 @@ my_lm = function(response, predictors, alpha) {
   # Return all estimated values
   return(list(beta = beta.hat, sigma2 = sigma2.hat, 
               variance_beta = var.beta, ci = ci.beta,R-squared = R_squared, Cp = Cp, F_statistics = F_statistics, P-Value = P_value, RMSE = RMSE, MAE = MAE, MAPE = MAPE))
-}
+
+
+devtools::document()
+
